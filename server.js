@@ -4,6 +4,7 @@ const path = require('path'); //
 const { animals } = require('./data/animals');
 
 const express = require('express');
+const { redirect } = require('statuses');
 
 
 const PORT = process.env.PORT || 3001;
@@ -15,6 +16,8 @@ app.use(express.urlencoded({ extended: true }))
 // parse incoming JSON data
 app.use(express.json());
 
+// this middleware method is a calls all the files under the directory in public to be used
+app.use(express.static('public'));
 
 // FOR API THAT GIVE BACK JUST PLAIN OBJECTS WITH STRINGS
 // function filterByQuery(query,animalsArray){
@@ -151,10 +154,22 @@ app.post('/api/animals', (req,res) => {
 
 })
 
-//before we made PORT at the top, use this: 
-// app.listen(3001, () => {
-//     console.log(`API server now on port 3001!`)
-// })
+//this gets our HTML pg
+app.get('/',(req, res) => {
+  res.sendFile(path.join(__dirname, './public/index.html'))
+})
+
+app.get('/animals', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/animals.html'));
+});
+
+app.get('/zookeepers', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/zookeepers.html'));
+});
+
+app.get('*', (req, res) => { //any page that doesnt exist will default to the homeapgee, wildcard routee
+  res.sendFile(path.join(__dirname, './public/index.html'));
+});
 
 app.listen(PORT, () => {
   console.log(`API server now on port ${PORT}!`)
