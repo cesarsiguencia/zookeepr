@@ -155,9 +155,11 @@ app.post('/api/animals', (req,res) => {
 })
 
 //this gets our HTML pg
-app.get('/',(req, res) => {
-  res.sendFile(path.join(__dirname, './public/index.html'))
-})
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
 
 app.get('/animals', (req, res) => {
   res.sendFile(path.join(__dirname, './public/animals.html'));

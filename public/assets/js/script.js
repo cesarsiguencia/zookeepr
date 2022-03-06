@@ -27,22 +27,50 @@ const handleAnimalFormSubmit = event => {
   const animalObject = { name, species, diet, personalityTraits };
 
   fetch('/api/animals', {
-    method: 'POST', //specify the type of command, otherwise it will default as a GET command
-    headers: { //headers property to inform that this is going to be json data, expect it so that the 'body' portion can work.
+    method: 'POST',
+    headers: {
       Accept: 'application/json',
-      'Content-Type':'application/json'
+      'Content-Type': 'application/json'
     },
-    body: JSON.stringify(animalObject) //the animalobjeect from above when the user is entering a new animal, being coverted to json string
+    body: JSON.stringify(animalObject)
+  })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      alert('Error: ' + response.statusText);
+    })
+    .then(postResponse => {
+      console.log(postResponse);
+      alert('Thank you for adding an animal!');
+    });
 
-  }).then(response => {
-    if(response.ok){
-      return response.json();
-    }
-    alert('Error: ' + response.statusText);
-  }).then(postResponse => {
-    console.log(postResponse);
-    alert('Thank you for adding an animal!')
-  });
+
+
+
+
+
+
+
+
+
+//   fetch('/api/animals', {
+//     method: 'POST', //specify the type of command, otherwise it will default as a GET command
+//     headers: { //headers property to inform that this is going to be json data, expect it so that the 'body' portion can work.
+//       Accept: 'application/json',
+//       'Content-Type':'application/json'
+//     },
+//     body: JSON.stringify(animalObject) //the animalobjeect from above when the user is entering a new animal, being coverted to json string
+
+//   }).then(response => {
+//     if(response.ok){
+//       return response.json();
+//     }
+//     alert('Error: ' + response.statusText);
+//   }).then(postResponse => {
+//     console.log(postResponse);
+//     alert('Thank you for adding an animal!')
+//   });
 
 };
 
