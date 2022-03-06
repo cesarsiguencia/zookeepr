@@ -128,6 +128,16 @@
         "goofy"
       ],
       "id": "12"
+    },
+    {
+      "name": "Cesar",
+      "species": "Raccoon",
+      "diet": "omnivore",
+      "personalityTraits": [
+        "hungry",
+        "zany"
+      ],
+      "id": "13"
     }
   ]
 }
