@@ -138,6 +138,15 @@
         "zany"
       ],
       "id": "13"
+    },
+    {
+      "name": "Daffy Duck",
+      "species": "Duck",
+      "diet": "herbivore",
+      "personalityTraits": [
+        "goofy"
+      ],
+      "id": "14"
     }
   ]
 }
